@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ammara 💖</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ffd1dc, #e6d9ff, #d6f0ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      color: rgba(255, 105, 180, 0.3);
+      animation: float 8s linear infinite;
+      font-size: 20px;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh); opacity: 0; }
+      20% { opacity: 1; }
+      100% { transform: translateY(-10vh); opacity: 0; }
+    }
+
+    .card {
+      background: rgba(255,255,255,0.35);
+      backdrop-filter: blur(15px);
+      border-radius: 24px;
+      padding: 40px 30px;
+      width: 90%;
+      max-width: 420px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      position: relative;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      position: relative;
+      height: 120px;
+    }
+
+    button {
+      border: none;
+      padding: 14px 28px;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: absolute;
+    }
+
+    #yesBtn {
+      left: 20px;
+      bottom: 20px;
+      background: linear-gradient(135deg, #7bffb0, #ff8ad8);
+      color: #fff;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    }
+
+    #yesBtn:hover {
+      transform: scale(1.08);
+    }
+
+    #noBtn {
+      right: 20px;
+      bottom: 20px;
+      background: linear-gradient(135deg, #ff7a7a, #ffa95f);
+      color: #fff;
+    }
+
+    /* Modal */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
+
+    .modal-content {
+      background: #fff;
+      border-radius: 20px;
+      padding: 30px;
+      width: 90%;
+      max-width: 380px;
+      text-align: center;
+      animation: pop 0.5s ease;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.7); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .modal h2 {
+      margin-top: 0;
+      color: #ff5fa2;
+    }
+
+    .mosque {
+      font-size: 60px;
+      margin: 15px 0;
+    }
+
+    .close {
+      margin-top: 20px;
+      background: #ff5fa2;
+      color: #fff;
+      padding: 10px 22px;
+      border-radius: 25px;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Confetti sparkles */
+    .sparkle {
+      position: fixed;
+      width: 6px;
+      height: 6px;
+      background: gold;
+      border-radius: 50%;
+      animation: sparkle 1s linear forwards;
+    }
+
+    @keyframes sparkle {
+      to {
+        transform: translateY(100px) scale(0);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Card -->
+  <div class="card">
+    <h1>AMMARA 💖</h1>
+    <p>Kia aap meray nikkah mein ana chahain gi?</p>
+
+    <div class="buttons">
+      <button id="yesBtn">YES</button>
+      <button id="noBtn">NO</button>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <h2>Alhamdulillah 🤍✨</h2>
+      <div class="mosque">🕌</div>
+      <p>Allah aapko hamesha khush rakhay,thanks for your decision</p>
+      <p>Aap ki presence humaray liye bohat khaas hogi,</p>
+      <p>Duaon mein yaad rakhna 🌙</p>
+      <button class="close" onclick="closeModal()">Ameen 🤍</button>
+    </div>
+  </div>
+
+  <script>
+    // Floating hearts
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = 16 + Math.random() * 20 + "px";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 8000);
+    }, 500);
+
+    // YES button
+    const yesBtn = document.getElementById("yesBtn");
+    const modal = document.getElementById("modal");
+
+    yesBtn.addEventListener("click", () => {
+      modal.style.display = "flex";
+      for (let i = 0; i < 30; i++) createSparkle();
+    });
+
+    function closeModal() {
+      modal.style.display = "none";
+    }
+
+    function createSparkle() {
+      const s = document.createElement("div");
+      s.className = "sparkle";
+      s.style.left = Math.random() * window.innerWidth + "px";
+      s.style.top = Math.random() * window.innerHeight + "px";
+      document.body.appendChild(s);
+      setTimeout(() => s.remove(), 1000);
+    }
+
+    // NO button prank
+    const noBtn = document.getElementById("noBtn");
+    const texts = [
+      "Oops 😜 Try again😅",
+      "Dobara tap karo😢",
+      "Kia sachi mein?😭",
+      "Phir dobara soch lo🙁",
+      "Acha phir…😫",
+      "Karo ho jaye ga🤐",
+      "Awain 😂",
+      "Nai ye mazak hai👀",
+      "Rehnay do😶",
+      "Nai hoga🙄",
+      "YES bhi hai 😏"
+    ];
+    let index = 0;
+
+    function moveNoButton() {
+      noBtn.style.left = Math.random() * 70 + "%";
+      noBtn.style.top = Math.random() * 70 + "%";
+      noBtn.textContent = texts[index];
+      index = (index + 1) % texts.length;
+    }
+
+    noBtn.addEventListener("mouseover", moveNoButton);
+    noBtn.addEventListener("click", moveNoButton);
+  </script>
+
+</body>
+</html>
